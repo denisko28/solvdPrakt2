@@ -11,16 +11,8 @@ public abstract class User extends Person {
 
     public User() {}
 
-    public User(
-        String phone,
-        String email,
-        Date registerDate,
-        String login,
-        String password,
-        String firstName,
-        String lastName,
-        String patronymic
-    ) {
+    public User(String phone, String email, Date registerDate, String login, String password, String firstName,
+                String lastName, String patronymic ) {
         super(firstName, lastName, patronymic);
         this.phone = phone;
         this.email = email;

@@ -10,14 +10,7 @@ public class Address {
 
     public Address() {}
 
-    public Address(
-        String building,
-        String street,
-        String city,
-        String region,
-        String postCode,
-        String country
-    ) {
+    public Address(String building, String street, String city, String region, String postCode, String country) {
         this.building = building;
         this.street = street;
         this.city = city;

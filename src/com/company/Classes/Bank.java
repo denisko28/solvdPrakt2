@@ -1,5 +1,7 @@
 package com.company.Classes;
 
+import com.company.Enumerations.AccountType;
+
 import java.util.ArrayList;
 
 public class Bank {
@@ -10,22 +12,15 @@ public class Bank {
     private ArrayList<Transaction> transactions;
     private ArrayList<Service> services;
     private ArrayList<Credit> credits;
+    private ArrayList<Account> accounts;
     private Account depositAccount;
     private License license;
 
     public Bank() {}
 
-    public Bank(
-        String name,
-        ArrayList<Customer> customers,
-        ArrayList<Employee> employees,
-        ArrayList<Branch> branches,
-        ArrayList<Transaction> transactions,
-        ArrayList<Service> services,
-        ArrayList<Credit> credits,
-        Account depositAccount,
-        License license
-    ) {
+    public Bank(String name, ArrayList<Customer> customers, ArrayList<Employee> employees, ArrayList<Branch> branches,
+                ArrayList<Transaction> transactions, ArrayList<Service> services, ArrayList<Credit> credits,
+                ArrayList<Account> accounts, Account depositAccount, License license ) {
         this.name = name;
         this.customers = customers;
         this.employees = employees;
@@ -33,6 +28,7 @@ public class Bank {
         this.transactions = transactions;
         this.services = services;
         this.credits = credits;
+        this.accounts = accounts;
         this.depositAccount = depositAccount;
         this.license = license;
     }
@@ -86,6 +82,13 @@ public class Bank {
         this.credits = credits;
     }
 
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+    public void setAccounts(ArrayList<Account> accounts) {
+        this.accounts = accounts;
+    }
+
     public Account getDepositAccount() {
         return depositAccount;
     }
@@ -100,20 +103,114 @@ public class Bank {
         this.license = license;
     }
 
-    public boolean addCredit(Credit account){
-        if(credits != null)
+    public boolean addCustomer(Customer customer){
+        if(customers != null)
         {
-            return credits.add(account);
+            return customers.add(customer);
         }else
             return false;
     }
 
-    public boolean removeCredit(Credit account){
-        if(credits != null)
+    public boolean removeCustomer(Customer customer){
+        if(customers != null)
         {
-            return credits.remove(account);
+            return customers.remove(customer);
         }else
             return false;
+    }
+
+    public boolean addEmployee(Employee employee){
+        if(employees != null)
+        {
+            return employees.add(employee);
+        }else
+            return false;
+    }
+
+    public boolean removeEmployee(Employee employee){
+        if(employees != null)
+        {
+            return employees.remove(employee);
+        }else
+            return false;
+    }
+
+    public boolean addBranch(Branch branch){
+        if(branches != null)
+        {
+            return branches.add(branch);
+        }else
+            return false;
+    }
+
+    public boolean removeBranch(Branch branch){
+        if(branches != null)
+        {
+            return branches.remove(branch);
+        }else
+            return false;
+    }
+
+    public boolean addTransaction(Employee employee){
+        if(employees != null)
+        {
+            return employees.add(employee);
+        }else
+            return false;
+    }
+
+    public boolean addService(Service service){
+        if(services != null)
+        {
+            return services.add(service);
+        }else
+            return false;
+    }
+
+    public boolean removeService(Service service){
+        if(services != null)
+        {
+            return services.remove(service);
+        }else
+            return false;
+    }
+
+    public boolean addCredit(Credit credit){
+        if(credits != null)
+        {
+            return credits.add(credit);
+        }else
+            return false;
+    }
+
+    public boolean removeCredit(Credit credit){
+        if(credits != null)
+        {
+            return credits.remove(credit);
+        }else
+            return false;
+    }
+
+    public boolean addAccount(Account account){
+        if(accounts != null)
+        {
+            return accounts.add(account);
+        }else
+            return false;
+    }
+
+    public boolean removeAccount(Account account){
+        if(accounts != null)
+        {
+            return accounts.remove(account);
+        }else
+            return false;
+    }
+
+    public void openAccountForCustomer(Employee employee, Customer customer, AccountType accountType){
+        Account account = employee.openAccountForCustomer(accountType);
+        customer.addAccount(account);
+        this.addAccount(account);
     }
 
     @Override

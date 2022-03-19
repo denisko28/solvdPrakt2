@@ -9,14 +9,16 @@ public class Account {
     private Date openedDate;
     private AccountType accountType;
     private float currentBalance;
+    private Employee openedBy;
 
     public Account() {}
 
-    public Account(String id, Date openedDate, AccountType accountType, float currentBalance) {
+    public Account(String id, Date openedDate, AccountType accountType, float currentBalance, Employee openedBy) {
         this.id = id;
         this.openedDate = openedDate;
         this.accountType = accountType;
         this.currentBalance = currentBalance;
+        this.openedBy = openedBy;
     }
 
     public String getId() {
@@ -45,6 +47,13 @@ public class Account {
     }
     public void setCurrentBalance(float currentBalance) {
         this.currentBalance = currentBalance;
+    }
+
+    public void setOpenedBy(Employee openedBy) {
+        this.openedBy = openedBy;
+    }
+    public Employee getOpenedBy() {
+        return openedBy;
     }
 
     @Override

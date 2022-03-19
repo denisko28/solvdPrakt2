@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.Classes.*;
 import com.company.Enumerations.AccountType;
+import com.company.Enumerations.EmployeeType;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,22 +27,39 @@ public class Main {
         Date licenseExpireDate = generateDate("22/12/2025");
         License license = new License("AH1643", licenseSignDate, licenseExpireDate, licenseSigner);
 
+        Address CEOAddress = new Address("57-Б", "Степана бандери", "Львів",
+                "Львівська область", "79007", "Україна");
+        Date CEORegisterDate = generateDate("17/05/2017");
+        Employee bankCEO = new Employee(EmployeeType.CEO, CEOAddress, "0986734223", "iamceo@outlook.com",
+                CEORegisterDate, "iamceo45", "ceo765123", "Георгій", "Гончаренко",
+                "Русланович");
+
         Date bankAccountDate = generateDate("28/02/2018");
-        Account depositAccount = new Account("#0000", bankAccountDate, AccountType.DEPOSIT, 230000);
-        Bank bank = new Bank("Приват банк", new ArrayList<Customer>(), new ArrayList<Employee>(), new ArrayList<Branch>(),
-                new ArrayList<Transaction>(), new ArrayList<Service>(), new ArrayList<Credit>(), depositAccount, license);
+        Account depositAccount = new Account("#0000", bankAccountDate, AccountType.DEPOSIT, 230000, bankCEO);
+        Bank bank = new Bank("Приват банк", new ArrayList<Customer>(), new ArrayList<Employee>(),
+                new ArrayList<Branch>(), new ArrayList<Transaction>(), new ArrayList<Service>(), new ArrayList<Credit>(),
+                new ArrayList<Account>(), depositAccount, license);
+
+        bank.addEmployee(bankCEO);
 
         //Employees
         ArrayList<Employee> employees = new ArrayList<Employee>();
-        EmployeeType employeeTypeHead = new EmployeeType("Директор відділення", "Керує відділенням");
-        Address addressOfBranchHead = new Address("12-A", "Головнв", "Чернівці",
+        Address addressOfBranchHead = new Address("12-A", "Головна", "Чернівці",
                 "Чернівецька область", "58000", "Україна");
         Date dateHeadOfBranch1 = generateDate("01/09/2021");
-        Employee headOfBranch1 = new Employee(employeeTypeHead, addressOfBranchHead, "0955656568",
-                "head@gmail.com", dateHeadOfBranch1, "head123", "pass2021", "Олександр",
+        Employee headOfBranch1 = new Employee(EmployeeType.BranchHead, addressOfBranchHead, "0955656568",
+                "head1@gmail.com", dateHeadOfBranch1, "head123", "pass2021", "Олександр",
                 "Іваненко", "Миколайович");
+        
+        Address addressOfSimpleEmployee1 = new Address("78", "Сторожинецька", "Чернівці", 
+                "Чернівецька область", "58038", "Україна");
+        Date dateOfSimpleEmployee1 = generateDate("03/10/2021");
+        Employee simpleEmployee1 = new Employee(EmployeeType.SimpleEmployee, addressOfSimpleEmployee1, "095554568",
+                "simple1@gmail.com", dateHeadOfBranch1, "simple123", "monkey2021", "Олег",
+                "Волошин", "Степанович");
 
-        employees.add(headOfBranch1);
+        bank.addEmployee(headOfBranch1);
+        bank.addEmployee(simpleEmployee1);
 
         //Branches
         ArrayList<Branch> branches = new ArrayList<Branch>();
@@ -49,32 +67,22 @@ public class Main {
                 "Чернівецька область", "58025", "Україна");
         Branch branch1 = new Branch("Відділення №1", branch1Address, "0503435433", headOfBranch1);
 
-        branches.add(branch1);
-
-        //Accounts
-        ArrayList<Account> accountsOfCustomer1 = new ArrayList<Account>();
-
-        AccountType accountSavingsType = AccountType.SAVINGS;
-        AccountType accountExpensesType = AccountType.EXPENSES;
-
-        Account account1 = new Account("#3456", new Date(), accountSavingsType, 5000);
-        Date dateForAccount2 = generateDate("12/02/2022");
-        Account account2 = new Account("#4456", dateForAccount2, accountExpensesType, 12000);
-
-        accountsOfCustomer1.add(account1);
-        accountsOfCustomer1.add(account2);
+        bank.addBranch(branch1);
 
         //Customers
-        ArrayList<Customer> customers = new ArrayList<Customer>();
-        Date registerDateCustomer1 = generateDate("01/02/2020");
-        Customer customer1 = new Customer(accountsOfCustomer1, new ArrayList<Credit>(), "0504723838",
+        Date registerDateCustomer1 = generateDate("01/02/2022");
+        Customer customer1 = new Customer(new ArrayList<Account>(), new ArrayList<Credit>(), "0504723838",
                 "petro@gmail.com", registerDateCustomer1, "petryk123", "petro_12345678",
                 "Петро", "Філіпчук", "Валентинович");
 
-        customers.add(customer1);
+        bank.addCustomer(customer1);
+
+        //Accounts
+        bank.openAccountForCustomer(simpleEmployee1, customer1, AccountType.SAVINGS);
+        bank.openAccountForCustomer(simpleEmployee1, customer1, AccountType.EXPENSES);
 
         //Credits
-        Date dateForCredit1 = generateDate("03/06/2021");
+        Date dateForCredit1 = generateDate("03/08/2022");
         Credit credit1 = new Credit("#00001", customer1, branch1, 2500, 2500,
                 10, 5, dateForCredit1);
 

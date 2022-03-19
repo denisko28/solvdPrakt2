@@ -14,16 +14,8 @@ public class Credit {
 
     public Credit() {}
 
-    public Credit(
-        String id,
-        Customer borrower,
-        Branch branch,
-        float amountBorrowed,
-        float amountLeftToPay,
-        int daysToRepay,
-        int percent,
-        Date borrowingDate
-    ) {
+    public Credit(String id, Customer borrower, Branch branch, float amountBorrowed, float amountLeftToPay,
+                  int daysToRepay, int percent, Date borrowingDate ) {
         this.id = id;
         this.borrower = borrower;
         this.branch = branch;

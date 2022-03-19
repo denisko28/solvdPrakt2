@@ -9,18 +9,8 @@ public class Customer extends User {
 
     public Customer() {}
 
-    public Customer(
-        ArrayList<Account> accounts,
-        ArrayList<Credit> credits,
-        String phone,
-        String email,
-        Date registerDate,
-        String login,
-        String password,
-        String firstName,
-        String lastName,
-        String patronymic
-    ){
+    public Customer(ArrayList<Account> accounts, ArrayList<Credit> credits, String phone, String email, Date registerDate,
+                    String login, String password, String firstName, String lastName, String patronymic ){
         super(phone, email, registerDate, login, password, firstName, lastName, patronymic);
         this.accounts = accounts;
         this.credits = credits;
