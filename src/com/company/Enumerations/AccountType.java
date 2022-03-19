@@ -4,7 +4,6 @@ public enum AccountType {
     EXPENSES("Expenses"),
     DEPOSIT("Deposit"),
     SAVINGS("Savings");
-
     private final String value;
 
     AccountType(String value) {
