@@ -1,21 +1,26 @@
 package com.company.Classes;
 
+import com.company.Interfaces.ComparableTransaction;
+
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements ComparableTransaction {
     private Account fromAccount;
     private Account toAccount;
     private float amount;
-    private float newBalance;
+    private float newBalanceFrom;
+    private float newBalanceTo;
     private Date date;
 
     public Transaction() {}
 
-    public Transaction(Account fromAccount, Account toAccount, float amount, float newBalance, Date date) {
+    public Transaction(Account fromAccount, Account toAccount, float amount, float newBalanceFrom, float newBalanceTo,
+                       Date date) {
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
         this.amount = amount;
-        this.newBalance = newBalance;
+        this.newBalanceFrom = newBalanceFrom;
+        this.newBalanceTo = newBalanceTo;
         this.date = date;
     }
 
@@ -40,11 +45,18 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public float getNewBalance() {
-        return newBalance;
+    public float getNewBalanceFrom() {
+        return newBalanceFrom;
     }
-    public void setNewBalance(float newBalance) {
-        this.newBalance = newBalance;
+    public void setNewBalanceFrom(float newBalance) {
+        this.newBalanceFrom = newBalance;
+    }
+
+    public float getNewBalanceTo() {
+        return newBalanceTo;
+    }
+    public void setNewBalanceTo(float newBalance) {
+        this.newBalanceTo = newBalance;
     }
 
     public Date getDate() {
@@ -54,13 +66,23 @@ public class Transaction {
         this.date = date;
     }
 
+    public int compareTransaction(Transaction anotherTransaction) {
+        if(this.amount < anotherTransaction.amount)
+            return -1;
+        else if(this.amount > anotherTransaction.amount)
+            return 1;
+        else
+            return 0;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
                 "fromAccount=" + fromAccount.toString() +
                 ", toAccount=" + toAccount.toString() +
                 ", amount=" + amount +
-                ", newBalance=" + newBalance +
+                ", newBalanceFrom=" + newBalanceFrom +
+                ", newBalanceTo=" + newBalanceTo +
                 ", date=" + date.toString() +
                 '}';
     }

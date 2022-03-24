@@ -49,11 +49,11 @@ public class Account {
         this.currentBalance = currentBalance;
     }
 
-    public void setOpenedBy(Employee openedBy) {
-        this.openedBy = openedBy;
-    }
     public Employee getOpenedBy() {
         return openedBy;
+    }
+    public void setOpenedBy(Employee openedBy) {
+        this.openedBy = openedBy;
     }
 
     @Override

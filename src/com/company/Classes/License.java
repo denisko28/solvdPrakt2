@@ -7,6 +7,7 @@ public class License {
     private Date signDate;
     private Date expireDate;
     private Person signedBy;
+    private final String nationalBankLink = "https://bank.gov.ua/";
 
     public License() {}
 
@@ -43,6 +44,10 @@ public class License {
     }
     public void setSignedBy(Person signedBy) {
         this.signedBy = signedBy;
+    }
+
+    public String getNationalBankLink() {
+        return nationalBankLink;
     }
 
     @Override

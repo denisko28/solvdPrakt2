@@ -1,6 +1,7 @@
 package com.company.Classes;
 
 public class Person {
+    private static int maxNameLength = 15;
     private String firstName;
     private String lastName;
     private String patronymic;
@@ -11,6 +12,13 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.patronymic = patronymic;
+    }
+
+    public static int getMaxNameLength(){
+        return maxNameLength;
+    }
+    public static void setMaxNameLength(int maxNameLengthParam){
+        maxNameLength = maxNameLengthParam;
     }
 
     public String getFirstName() {

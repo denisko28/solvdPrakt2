@@ -56,6 +56,8 @@ public abstract class User extends Person {
         this.password = password;
     }
 
+    public abstract void sendMessage();
+
     @Override
     public String toString() {
         return "User{" +

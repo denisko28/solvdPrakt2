@@ -1,9 +1,13 @@
 package com.company.Classes;
 
+import com.company.Interfaces.IKeepAccounts;
+import com.company.Interfaces.IKeepCredits;
+import com.company.Interfaces.Payable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Customer extends User {
+public class Customer extends User implements IKeepAccounts, IKeepCredits, Payable {
     private ArrayList<Account> accounts;
     private ArrayList<Credit> credits;
 
@@ -60,6 +64,20 @@ public class Customer extends User {
             return credits.remove(account);
         }else
             return false;
+    }
+
+    @Override
+    public Transaction pay(Account from, Account to, float amount){
+        float newBalanceFrom = from.getCurrentBalance() - amount;
+        float newBalanceTo = from.getCurrentBalance() + amount;
+        from.setCurrentBalance(newBalanceFrom);
+        from.setCurrentBalance(newBalanceTo);
+        return new Transaction(from, to, amount, newBalanceFrom, newBalanceTo, new Date());
+    }
+
+    @Override
+    public void sendMessage() {
+        System.out.println("Hello, I am customer");
     }
 
     @Override

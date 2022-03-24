@@ -1,6 +1,6 @@
 package com.company.Classes;
 
-public class Branch {
+public final class Branch {
     private String name;
     private Address address;
     private String phone;

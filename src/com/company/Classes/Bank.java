@@ -1,10 +1,11 @@
 package com.company.Classes;
 
 import com.company.Enumerations.AccountType;
+import com.company.Interfaces.IBank;
 
 import java.util.ArrayList;
 
-public class Bank {
+public class Bank implements IBank {
     private String name;
     private ArrayList<Customer> customers;
     private ArrayList<Employee> employees;

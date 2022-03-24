@@ -33,11 +33,15 @@ public class Employee extends User {
         this.address = address;
     }
 
-    public Account openAccountForCustomer(AccountType accountType){
+    public final Account openAccountForCustomer(AccountType accountType){
         Random random = new Random();
         String accountId = '#' + Integer.toString(random.nextInt(5000));
-        Account account = new Account(accountId, new Date(), accountType, 0, this);
-        return account;
+        return new Account(accountId, new Date(), accountType, 0, this);
+    }
+
+    @Override
+    public void sendMessage() {
+        System.out.println("Hello, I am employee");
     }
 
     @Override
