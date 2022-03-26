@@ -1,13 +1,12 @@
 package com.company.Enumerations;
 
 public enum EmployeeType {
-    CEO ("Гендиректор", "загальне управління банком"),
-    BranchHead ("Директор відділеня", "управління відділенням"),
-    SimpleEmployee ("Звичайний працівник", "відкриття рахунків, оформлення нових клієнтів");
+    CEO ("CEO", "general bank management"),
+    BranchHead ("Branch head", "branch management"),
+    SimpleEmployee ("Simple employee", "accounts opening, new clients registration");
 
     private final String position;
     private final String responsibility;
-
 
     EmployeeType(String position, String responsibility) {
         this.position = position;
