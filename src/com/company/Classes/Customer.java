@@ -23,6 +23,7 @@ public class Customer extends User implements IKeepAccounts, IKeepCredits, Payab
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
+
     public void setAccounts(ArrayList<Account> accounts) {
         this.accounts = accounts;
     }
@@ -30,6 +31,7 @@ public class Customer extends User implements IKeepAccounts, IKeepCredits, Payab
     public ArrayList<Credit> getLoans() {
         return credits;
     }
+
     public void setLoans(ArrayList<Credit> credits) {
         this.credits = credits;
     }

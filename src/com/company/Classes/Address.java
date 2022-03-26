@@ -22,6 +22,7 @@ public class Address {
     public String getBuilding() {
         return building;
     }
+
     public void setBuilding(String building) {
         this.building = building;
     }
@@ -29,6 +30,7 @@ public class Address {
     public String getStreet() {
         return street;
     }
+
     public void setStreet(String street) {
         this.street = street;
     }
@@ -36,6 +38,7 @@ public class Address {
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -43,6 +46,7 @@ public class Address {
     public String getRegion() {
         return region;
     }
+
     public void setRegion(String region) {
         this.region = region;
     }
@@ -50,6 +54,7 @@ public class Address {
     public String getPostCode() {
         return postCode;
     }
+
     public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
@@ -57,6 +62,7 @@ public class Address {
     public String getCountry() {
         return country;
     }
+
     public void setCountry(String country) {
         this.country = country;
     }

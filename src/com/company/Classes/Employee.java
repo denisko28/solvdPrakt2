@@ -22,6 +22,7 @@ public class Employee extends User {
     public EmployeeType getEmployeeType() {
         return employeeType;
     }
+
     public void setEmployeeType(EmployeeType employeeType) {
         this.employeeType = employeeType;
     }
@@ -29,6 +30,7 @@ public class Employee extends User {
     public Address getAddress() {
         return address;
     }
+
     public void setAddress(Address address) {
         this.address = address;
     }

@@ -37,6 +37,7 @@ public class Bank implements IBank {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -44,6 +45,7 @@ public class Bank implements IBank {
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
+
     public void setCustomers(ArrayList<Customer> customers) {
         this.customers = customers;
     }
@@ -51,6 +53,7 @@ public class Bank implements IBank {
     public ArrayList<Employee> getEmployees() {
         return employees;
     }
+
     public void setEmployees(ArrayList<Employee> employees) {
         this.employees = employees;
     }
@@ -58,6 +61,7 @@ public class Bank implements IBank {
     public ArrayList<Branch> getBranches() {
         return branches;
     }
+
     public void setBranches(ArrayList<Branch> branches) {
         this.branches = branches;
     }
@@ -65,6 +69,7 @@ public class Bank implements IBank {
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
+
     public void setTransactions(ArrayList<Transaction> transactions) {
         this.transactions = transactions;
     }
@@ -72,6 +77,7 @@ public class Bank implements IBank {
     public ArrayList<Service> getServices() {
         return services;
     }
+
     public void setServices(ArrayList<Service> services) {
         this.services = services;
     }
@@ -79,6 +85,7 @@ public class Bank implements IBank {
     public ArrayList<Credit> getCredits() {
         return credits;
     }
+
     public void setCredits(ArrayList<Credit> credits) {
         this.credits = credits;
     }
@@ -86,6 +93,7 @@ public class Bank implements IBank {
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
+
     public void setAccounts(ArrayList<Account> accounts) {
         this.accounts = accounts;
     }
@@ -93,6 +101,7 @@ public class Bank implements IBank {
     public Account getDepositAccount() {
         return depositAccount;
     }
+
     public void setDepositAccount(Account depositAccount) {
         this.depositAccount = depositAccount;
     }
@@ -100,6 +109,7 @@ public class Bank implements IBank {
     public License getLicense() {
         return license;
     }
+
     public void setLicense(License license) {
         this.license = license;
     }
@@ -152,10 +162,10 @@ public class Bank implements IBank {
             return false;
     }
 
-    public boolean addTransaction(Employee employee){
-        if(employees != null)
+    public boolean addTransaction(Transaction transaction){
+        if(transactions != null)
         {
-            return employees.add(employee);
+            return transactions.add(transaction);
         }else
             return false;
     }

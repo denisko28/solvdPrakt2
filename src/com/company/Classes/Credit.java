@@ -29,6 +29,7 @@ public class Credit {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -36,6 +37,7 @@ public class Credit {
     public Customer getBorrower() {
         return borrower;
     }
+
     public void setBorrower(Customer borrower) {
         this.borrower = borrower;
     }
@@ -43,6 +45,7 @@ public class Credit {
     public Branch getBranch() {
         return branch;
     }
+
     public void setBranch(Branch branch) {
         this.branch = branch;
     }
@@ -50,6 +53,7 @@ public class Credit {
     public float getAmountBorrowed() {
         return amountBorrowed;
     }
+
     public void setAmountBorrowed(float amountBorrowed) {
         this.amountBorrowed = amountBorrowed;
     }
@@ -57,6 +61,7 @@ public class Credit {
     public float getAmountLeftToPay() {
         return amountLeftToPay;
     }
+
     public void setAmountLeftToPay(float amountLeftToPay) {
         this.amountLeftToPay = amountLeftToPay;
     }
@@ -64,6 +69,7 @@ public class Credit {
     public int getDaysToRepay() {
         return daysToRepay;
     }
+
     public void setDaysToRepay(int daysToRepay) {
         this.daysToRepay = daysToRepay;
     }
@@ -71,6 +77,7 @@ public class Credit {
     public int getPercent() {
         return percent;
     }
+
     public void setPercent(int percent) {
         this.percent = percent;
     }
@@ -78,6 +85,7 @@ public class Credit {
     public Date getBorrowingDate() {
         return borrowingDate;
     }
+
     public void setBorrowingDate(Date borrowingDate) {
         this.borrowingDate = borrowingDate;
     }

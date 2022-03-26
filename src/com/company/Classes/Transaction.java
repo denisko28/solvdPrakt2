@@ -27,6 +27,7 @@ public class Transaction implements ComparableTransaction {
     public Account getFromAccount() {
         return fromAccount;
     }
+
     public void setFromAccount(Account fromAccount) {
         this.fromAccount = fromAccount;
     }
@@ -34,6 +35,7 @@ public class Transaction implements ComparableTransaction {
     public Account getToAccount() {
         return toAccount;
     }
+
     public void setToAccount(Account toAccount) {
         this.toAccount = toAccount;
     }
@@ -41,6 +43,7 @@ public class Transaction implements ComparableTransaction {
     public float getAmount() {
         return amount;
     }
+
     public void setAmount(float amount) {
         this.amount = amount;
     }
@@ -48,6 +51,7 @@ public class Transaction implements ComparableTransaction {
     public float getNewBalanceFrom() {
         return newBalanceFrom;
     }
+
     public void setNewBalanceFrom(float newBalance) {
         this.newBalanceFrom = newBalance;
     }
@@ -55,6 +59,7 @@ public class Transaction implements ComparableTransaction {
     public float getNewBalanceTo() {
         return newBalanceTo;
     }
+
     public void setNewBalanceTo(float newBalance) {
         this.newBalanceTo = newBalance;
     }
@@ -62,6 +67,7 @@ public class Transaction implements ComparableTransaction {
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }

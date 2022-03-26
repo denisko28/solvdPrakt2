@@ -24,6 +24,7 @@ public abstract class User extends Person {
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -31,6 +32,7 @@ public abstract class User extends Person {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -38,6 +40,7 @@ public abstract class User extends Person {
     public Date getRegisterDate() {
         return registerDate;
     }
+
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
     }
@@ -45,6 +48,7 @@ public abstract class User extends Person {
     public String getLogin() {
         return login;
     }
+
     public void setLogin(String login) {
         this.login = login;
     }
@@ -52,6 +56,7 @@ public abstract class User extends Person {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }

@@ -24,6 +24,7 @@ public class Account {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -31,6 +32,7 @@ public class Account {
     public Date getOpenedDate() {
         return openedDate;
     }
+
     public void setOpenedDate(Date openedDate) {
         this.openedDate = openedDate;
     }
@@ -38,6 +40,7 @@ public class Account {
     public AccountType getAccountType() {
         return accountType;
     }
+
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
@@ -45,6 +48,7 @@ public class Account {
     public float getCurrentBalance() {
         return currentBalance;
     }
+
     public void setCurrentBalance(float currentBalance) {
         this.currentBalance = currentBalance;
     }
@@ -52,6 +56,7 @@ public class Account {
     public Employee getOpenedBy() {
         return openedBy;
     }
+
     public void setOpenedBy(Employee openedBy) {
         this.openedBy = openedBy;
     }

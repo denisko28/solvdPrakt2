@@ -18,6 +18,7 @@ public final class Branch {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -25,6 +26,7 @@ public final class Branch {
     public Address getAddress() {
         return address;
     }
+
     public void setAddress(Address address) {
         this.address = address;
     }
@@ -32,6 +34,7 @@ public final class Branch {
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -39,6 +42,7 @@ public final class Branch {
     public Employee getHead() {
         return head;
     }
+
     public void setHead(Employee head) {
         this.head = head;
     }

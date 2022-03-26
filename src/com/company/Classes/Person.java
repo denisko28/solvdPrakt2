@@ -17,6 +17,7 @@ public class Person {
     public static int getMaxNameLength(){
         return maxNameLength;
     }
+
     public static void setMaxNameLength(int maxNameLengthParam){
         maxNameLength = maxNameLengthParam;
     }
@@ -24,6 +25,7 @@ public class Person {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -31,6 +33,7 @@ public class Person {
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -38,6 +41,7 @@ public class Person {
     public String getPatronymic() {
         return patronymic;
     }
+
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }

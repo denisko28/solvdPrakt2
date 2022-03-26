@@ -1,6 +1,10 @@
 package com.company.Interfaces;
 
-import com.company.Classes.*;
+import com.company.Classes.Branch;
+import com.company.Classes.Customer;
+import com.company.Classes.Employee;
+import com.company.Classes.Service;
+import com.company.Classes.Transaction;
 
 public interface IBank extends IKeepAccounts, IKeepCredits {
     public boolean addCustomer(Customer customer);
@@ -15,7 +19,7 @@ public interface IBank extends IKeepAccounts, IKeepCredits {
 
     public boolean removeBranch(Branch branch);
 
-    public boolean addTransaction(Employee employee);
+    public boolean addTransaction(Transaction transaction);
 
     public boolean addService(Service service);
 

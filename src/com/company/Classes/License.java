@@ -21,6 +21,7 @@ public class License {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -28,6 +29,7 @@ public class License {
     public Date getSignDate() {
         return signDate;
     }
+
     public void setSignDate(Date signDate) {
         this.signDate = signDate;
     }
@@ -35,6 +37,7 @@ public class License {
     public Date getExpireDate() {
         return expireDate;
     }
+
     public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
     }
@@ -42,6 +45,7 @@ public class License {
     public Person getSignedBy() {
         return signedBy;
     }
+
     public void setSignedBy(Person signedBy) {
         this.signedBy = signedBy;
     }
