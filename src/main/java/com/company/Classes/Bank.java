@@ -1,11 +1,16 @@
 package com.company.Classes;
 
 import com.company.Enumerations.AccountType;
+import com.company.Exceptions.ExpiredLicenseException;
 import com.company.Interfaces.IBank;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Bank implements IBank {
+    private static final Logger LOGGER = Logger.getLogger(Bank.class);
+
     private String name;
     private ArrayList<Customer> customers;
     private ArrayList<Employee> employees;
@@ -111,7 +116,15 @@ public class Bank implements IBank {
     }
 
     public void setLicense(License license) {
-        this.license = license;
+        try {
+            Date currentDate = new Date();
+            if(!license.getExpireDate().before(currentDate))
+                this.license = license;
+            else
+                throw new ExpiredLicenseException("You are trying to set an expired license");
+        } catch (ExpiredLicenseException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
     }
 
     public boolean addCustomer(Customer customer){

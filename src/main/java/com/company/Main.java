@@ -9,7 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 public class Main {
+
+    private static final Logger LOGGER = Logger.getLogger(Main.class);
 
     static Date generateDate(String date) {
         try {
@@ -50,8 +54,8 @@ public class Main {
         Employee headOfBranch1 = new Employee(EmployeeType.BranchHead, addressOfBranchHead, "0955656568",
                 "head1@gmail.com", dateHeadOfBranch1, "head123", "pass2021", "Олександр",
                 "Іваненко", "Миколайович");
-        
-        Address addressOfSimpleEmployee1 = new Address("78", "Сторожинецька", "Чернівці", 
+
+        Address addressOfSimpleEmployee1 = new Address("78", "Сторожинецька", "Чернівці",
                 "Чернівецька область", "58038", "Україна");
         Date dateOfSimpleEmployee1 = generateDate("03/10/2021");
         Employee simpleEmployee1 = new Employee(EmployeeType.SimpleEmployee, addressOfSimpleEmployee1, "095554568",
@@ -81,6 +85,7 @@ public class Main {
         bank.openAccountForCustomer(simpleEmployee1, customer1, AccountType.SAVINGS);
         bank.openAccountForCustomer(simpleEmployee1, customer1, AccountType.EXPENSES);
 
+
         //Credits
         Date dateForCredit1 = generateDate("03/08/2022");
         Credit credit1 = new Credit("#00001", customer1, branch1, 2500, 2500,
@@ -89,8 +94,7 @@ public class Main {
         customer1.addCredit(credit1);
         bank.addCredit(credit1);
 
-
         //Output
-        System.out.println(bank.toString());
+        LOGGER.debug(bank.toString());
     }
 }

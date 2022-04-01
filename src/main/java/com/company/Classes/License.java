@@ -1,8 +1,15 @@
 package com.company.Classes;
 
+import com.company.Exceptions.EarlierDateException;
+import com.company.Exceptions.FutureDateException;
+import org.apache.log4j.Logger;
+import sun.tools.tree.NullExpression;
+
 import java.util.Date;
 
 public class License {
+    private static final Logger LOGGER = Logger.getLogger(License.class);
+
     private String id;
     private Date signDate;
     private Date expireDate;
@@ -31,7 +38,15 @@ public class License {
     }
 
     public void setSignDate(Date signDate) {
-        this.signDate = signDate;
+        try {
+            Date currentDate = new Date();
+            if (!signDate.after(currentDate))
+                this.signDate = signDate;
+            else
+                throw new FutureDateException();
+        } catch(FutureDateException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
     }
 
     public Date getExpireDate() {
@@ -39,7 +54,16 @@ public class License {
     }
 
     public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
+        try {
+            if(signDate == null)
+                throw new NullPointerException("The sign date has to be set before setting expiration date");
+            else if(!expireDate.after(signDate))
+                this.expireDate = expireDate;
+            else
+                throw new EarlierDateException(signDate);
+        } catch (Exception ex) {
+            LOGGER.debug(ex.getMessage());
+        }
     }
 
     public Person getSignedBy() {

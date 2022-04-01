@@ -1,10 +1,15 @@
 package com.company.Classes;
 
 import com.company.Enumerations.AccountType;
+import com.company.Exceptions.FutureDateException;
+import com.company.Exceptions.NegativeBalanceException;
+import org.apache.log4j.Logger;
 
 import java.util.Date;
 
 public class Account {
+    private static final Logger LOGGER = Logger.getLogger(Account.class);
+
     private String id;
     private Date openedDate;
     private AccountType accountType;
@@ -34,7 +39,15 @@ public class Account {
     }
 
     public void setOpenedDate(Date openedDate) {
-        this.openedDate = openedDate;
+        try {
+            Date currentDate = new Date();
+            if (!openedDate.after(currentDate))
+                this.openedDate = openedDate;
+            else
+                throw new FutureDateException();
+        } catch (FutureDateException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
     }
 
     public AccountType getAccountType() {
@@ -50,7 +63,14 @@ public class Account {
     }
 
     public void setCurrentBalance(float currentBalance) {
-        this.currentBalance = currentBalance;
+        try {
+            if (currentBalance >= 0)
+                this.currentBalance = currentBalance;
+            else
+                throw new NegativeBalanceException();
+        } catch (NegativeBalanceException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
     }
 
     public Employee getOpenedBy() {
