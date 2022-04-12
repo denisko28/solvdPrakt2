@@ -1,9 +1,9 @@
 package com.solvd.bank.Enumerations;
 
 public enum EmployeeType {
-    CEO ("CEO", "general bank management"),
-    BranchHead ("Branch head", "branch management"),
-    SimpleEmployee ("Simple employee", "accounts opening, new clients registration");
+    CEO("CEO", "general bank management"),
+    BRANCH_HEAD("Branch head", "branch management"),
+    SIMPLE_EMPLOYEE("Simple employee", "accounts opening, new clients registration");
 
     private final String position;
     private final String responsibility;

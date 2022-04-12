@@ -51,14 +51,14 @@ public class Main {
         Address addressOfBranchHead = new Address("12-A", "Головна", "Чернівці",
                 "Чернівецька область", "58000", "Україна");
         Date dateHeadOfBranch1 = generateDate("01/09/2021");
-        Employee headOfBranch1 = new Employee(EmployeeType.BranchHead, addressOfBranchHead, "0955656568",
+        Employee headOfBranch1 = new Employee(EmployeeType.BRANCH_HEAD, addressOfBranchHead, "0955656568",
                 "head1@gmail.com", dateHeadOfBranch1, "head123", "pass2021", "Олександр",
                 "Іваненко", "Миколайович");
 
         Address addressOfSimpleEmployee1 = new Address("78", "Сторожинецька", "Чернівці",
                 "Чернівецька область", "58038", "Україна");
         Date dateOfSimpleEmployee1 = generateDate("03/10/2021");
-        Employee simpleEmployee1 = new Employee(EmployeeType.SimpleEmployee, addressOfSimpleEmployee1, "095554568",
+        Employee simpleEmployee1 = new Employee(EmployeeType.SIMPLE_EMPLOYEE, addressOfSimpleEmployee1, "095554568",
                 "simple1@gmail.com", dateHeadOfBranch1, "simple123", "monkey2021", "Олег",
                 "Волошин", "Степанович");
 
