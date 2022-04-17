@@ -1,5 +1,8 @@
 package com.solvd.bank.Classes;
 
+import org.apache.log4j.Logger;
+
+import com.solvd.bank.Interfaces.IPayCallBack;
 import com.solvd.bank.Interfaces.IKeepAccounts;
 import com.solvd.bank.Interfaces.IKeepCredits;
 import com.solvd.bank.Interfaces.Payable;
@@ -8,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Customer extends User implements IKeepAccounts, IKeepCredits, Payable {
+    private static final Logger LOGGER = Logger.getLogger(Customer.class);
+
     private ArrayList<Account> accounts;
     private ArrayList<Credit> credits;
 
@@ -68,13 +73,33 @@ public class Customer extends User implements IKeepAccounts, IKeepCredits, Payab
             return false;
     }
 
+    public boolean ownsAccount(Account account) {
+        return accounts.contains(account);
+    }
+
     @Override
-    public Transaction pay(Account from, Account to, float amount){
-        float newBalanceFrom = from.getCurrentBalance() - amount;
-        float newBalanceTo = from.getCurrentBalance() + amount;
-        from.setCurrentBalance(newBalanceFrom);
-        from.setCurrentBalance(newBalanceTo);
-        return new Transaction(from, to, amount, newBalanceFrom, newBalanceTo, new Date());
+    public void pay(Account from, Account to, float amount, IPayCallBack callBackFunc){
+        try {
+            if(from != null || to != null) {
+                if(amount > 0) {
+                    if(ownsAccount(from)) {
+                        float newBalanceFrom = from.getCurrentBalance() - amount;
+                        if(newBalanceFrom >= 0) {
+                            float newBalanceTo = to.getCurrentBalance() + amount;
+                            from.setCurrentBalance(newBalanceFrom);
+                            to.setCurrentBalance(newBalanceTo);
+                            callBackFunc.callback(new Transaction(from, to, amount, newBalanceFrom, newBalanceTo, new Date()));
+                        } else
+                            throw new IllegalArgumentException("The account from which goes payment doesn't have enough money");
+                    } else
+                        throw new IllegalArgumentException("This customer doesn't own Account with id: '" + from.getId() + "'");
+                } else
+                    throw new IllegalArgumentException("The amount should be greater then 0");
+            } else
+                throw new NullPointerException("Accounts cannot be null");
+        } catch (RuntimeException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
     }
 
     @Override
@@ -87,7 +112,7 @@ public class Customer extends User implements IKeepAccounts, IKeepCredits, Payab
         return "Customer{" +
                 "accountsNum=" + (accounts!=null ? accounts.size() : "null") +
                 ", creditsNum=" + (credits!=null ? credits.size() : "null") +
-                super.toString() +
+                ", " + super.toString() +
                 '}';
     }
 }
