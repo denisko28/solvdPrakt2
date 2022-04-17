@@ -1,9 +1,10 @@
 package com.solvd.bank.Classes;
 
+import org.apache.log4j.Logger;
+
 import com.solvd.bank.Enumerations.AccountType;
 import com.solvd.bank.Exceptions.FutureDateException;
 import com.solvd.bank.Exceptions.NegativeBalanceException;
-import org.apache.log4j.Logger;
 
 import java.util.Date;
 
@@ -79,6 +80,13 @@ public class Account {
 
     public void setOpenedBy(Employee openedBy) {
         this.openedBy = openedBy;
+    }
+
+    public void topUp(float amountOfMoney) {
+        if(amountOfMoney > 0)
+            this.currentBalance += amountOfMoney;
+        else
+            throw new IllegalArgumentException("The amount of money to top up account should be greater than 0");
     }
 
     @Override
