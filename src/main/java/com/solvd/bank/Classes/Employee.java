@@ -1,10 +1,13 @@
 package com.solvd.bank.Classes;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+
 import com.solvd.bank.Enumerations.AccountType;
 import com.solvd.bank.Enumerations.EmployeeType;
+import com.solvd.bank.Interfaces.Calculable;
 
 import java.util.Date;
-import java.util.Random;
 
 public class Employee extends User {
     private EmployeeType employeeType;
@@ -36,9 +39,20 @@ public class Employee extends User {
     }
 
     public final Account openAccountForCustomer(AccountType accountType){
-        Random random = new Random();
-        String accountId = '#' + Integer.toString(random.nextInt(5000));
+        String accountId = '#' + Integer.toString(RandomUtils.nextInt(0, 10000));
         return new Account(accountId, new Date(), accountType, 0, this);
+    }
+
+    public final Credit createCredit(Customer customer, Branch branch, float borrowedAmount, int daysToRepay,
+                                             int percent) {
+        Date dateForCredit = new Date();
+        float amountLeftToPay = borrowedAmount * (100 + percent)/100;
+        return new Credit("#" + RandomStringUtils.randomNumeric(5), customer, branch,
+                borrowedAmount, amountLeftToPay, daysToRepay, percent, dateForCredit);
+    }
+
+    public static float exchangeCurrency(Calculable calcFunc) {
+        return calcFunc.calculate();
     }
 
     @Override
