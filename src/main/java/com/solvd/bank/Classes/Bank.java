@@ -1,15 +1,20 @@
 package com.solvd.bank.Classes;
 
+import org.apache.log4j.Logger;
+
 import com.solvd.bank.Enumerations.AccountType;
 import com.solvd.bank.Exceptions.ExpiredLicenseException;
+import com.solvd.bank.Interfaces.Calculable;
 import com.solvd.bank.Interfaces.IBank;
-import org.apache.log4j.Logger;
+import com.solvd.bank.Interfaces.IPrintNames;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Bank implements IBank {
     private static final Logger LOGGER = Logger.getLogger(Bank.class);
+
+    private static ArrayList<Currency> currencies;
 
     private String name;
     private ArrayList<Customer> customers;
@@ -127,6 +132,12 @@ public class Bank implements IBank {
         }
     }
 
+    public static boolean addCurrency(Currency currency){
+        if(currencies == null)
+            currencies = new ArrayList<>();
+        return currencies.add(currency);
+    }
+
     public boolean addCustomer(Customer customer){
         if(customers != null)
         {
@@ -231,10 +242,49 @@ public class Bank implements IBank {
             return false;
     }
 
-    public void openAccountForCustomer(Employee employee, Customer customer, AccountType accountType){
+    public void openAccountForCustomer(Employee employee, Customer customer, AccountType accountType, IPrintNames printFunc){
         Account account = employee.openAccountForCustomer(accountType);
         customer.addAccount(account);
         this.addAccount(account);
+        printFunc.print(customer.getFirstName(), customer.getLastName());
+    }
+
+    public void giveCreditToCustomer(Employee employee, Customer customer, Branch branch, Account accountToAdd,
+                                     float borrowedAmount, int daysToRepay) {
+        try {
+            if(!customer.ownsAccount(accountToAdd))
+                throw new IllegalArgumentException("The account to add money should be owned by customer who takes a credit");
+            if(borrowedAmount <= 100)
+                throw new IllegalArgumentException("The borrowed amount should be greater then 100");
+            if(daysToRepay < 1)
+                throw new IllegalArgumentException("The amount of days to repay should be more than 0");
+
+            Credit credit = employee.createCredit(customer, branch, borrowedAmount, daysToRepay, 5);
+            customer.addCredit(credit);
+            addCredit(credit);
+            accountToAdd.topUp(borrowedAmount);
+        } catch (RuntimeException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
+    }
+
+    public static float exchangeCurrency(float amount, String fromCurrName, String toCurrName) {
+        try {
+            Currency fromCurr = currencies.stream()
+                    .filter(currency -> fromCurrName == currency.getShortName()).findFirst().orElse(null);
+            if (fromCurr != null) {
+                Float exchangeVal = fromCurr.getExchangeValues().get(toCurrName);
+                if(exchangeVal != null) {
+                    Calculable calcFunc = () -> Math.round(amount * exchangeVal * 100f) / 100f;
+                    return Employee.exchangeCurrency(calcFunc);
+                } else
+                    throw new IllegalArgumentException("The currency with name '"  + toCurrName + "' cannot be found");
+            } else
+                throw new IllegalArgumentException("The currency with name '"  + fromCurrName + "' cannot be found");
+        } catch (IllegalArgumentException ex) {
+            LOGGER.debug(ex.getMessage());
+        }
+        return 0;
     }
 
     @Override
