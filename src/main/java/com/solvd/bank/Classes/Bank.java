@@ -21,7 +21,6 @@ public class Bank implements IBank {
     private ArrayList<Employee> employees;
     private ArrayList<Branch> branches;
     private ArrayList<Transaction> transactions;
-    private ArrayList<Service> services;
     private ArrayList<Credit> credits;
     private ArrayList<Account> accounts;
     private Account depositAccount;
@@ -30,14 +29,13 @@ public class Bank implements IBank {
     public Bank() {}
 
     public Bank(String name, ArrayList<Customer> customers, ArrayList<Employee> employees, ArrayList<Branch> branches,
-                ArrayList<Transaction> transactions, ArrayList<Service> services, ArrayList<Credit> credits,
+                ArrayList<Transaction> transactions, ArrayList<Credit> credits,
                 ArrayList<Account> accounts, Account depositAccount, License license ) {
         this.name = name;
         this.customers = customers;
         this.employees = employees;
         this.branches = branches;
         this.transactions = transactions;
-        this.services = services;
         this.credits = credits;
         this.accounts = accounts;
         this.depositAccount = depositAccount;
@@ -82,14 +80,6 @@ public class Bank implements IBank {
 
     public void setTransactions(ArrayList<Transaction> transactions) {
         this.transactions = transactions;
-    }
-
-    public ArrayList<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(ArrayList<Service> services) {
-        this.services = services;
     }
 
     public ArrayList<Credit> getCredits() {
@@ -194,22 +184,6 @@ public class Bank implements IBank {
             return false;
     }
 
-    public boolean addService(Service service){
-        if(services != null)
-        {
-            return services.add(service);
-        }else
-            return false;
-    }
-
-    public boolean removeService(Service service){
-        if(services != null)
-        {
-            return services.remove(service);
-        }else
-            return false;
-    }
-
     public boolean addCredit(Credit credit){
         if(credits != null)
         {
@@ -295,7 +269,6 @@ public class Bank implements IBank {
                 ", employeesNum=" + (employees!=null ? employees.size() : "null") +
                 ", branchesNum=" + (branches!=null ? branches.size() : "null") +
                 ", transactionsNum=" + (transactions!=null ? transactions.size() : "null") +
-                ", servicesNum=" + (services!=null ? services.size() : "null") +
                 ", creditsNum=" + (credits!=null ? credits.size() : "null") +
                 ", depositAccount=" + depositAccount.toString() +
                 ", license=" + license.toString() +

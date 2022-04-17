@@ -1,8 +1,9 @@
 package com.solvd.bank.Classes;
 
+import org.apache.log4j.Logger;
+
 import com.solvd.bank.Exceptions.EarlierDateException;
 import com.solvd.bank.Exceptions.FutureDateException;
-import org.apache.log4j.Logger;
 
 import java.util.Date;
 

@@ -50,7 +50,7 @@ public class Main {
         Date bankAccountDate = generateDate("28/02/2018");
         Account depositAccount = new Account("#0000", bankAccountDate, AccountType.DEPOSIT, 230000, bankCEO);
         Bank bank = new Bank("Privat bank", new ArrayList<Customer>(), new ArrayList<Employee>(),
-                new ArrayList<Branch>(), new ArrayList<Transaction>(), new ArrayList<Service>(), new ArrayList<Credit>(),
+                new ArrayList<Branch>(), new ArrayList<Transaction>(), new ArrayList<Credit>(),
                 new ArrayList<Account>(), depositAccount, license);
 
         bank.addEmployee(bankCEO);
