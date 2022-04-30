@@ -1,9 +1,13 @@
 package com.solvd.bank;
 
 import com.solvd.bank.Classes.*;
+import com.solvd.bank.Classes.Deadlock.DeadlockRunnable;
+import com.solvd.bank.Classes.Deadlock.DeadlockThread;
 import com.solvd.bank.Enumerations.AccountType;
 import com.solvd.bank.Enumerations.EmployeeType;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,10 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.solvd.bank.Interfaces.IPayCallBack;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.apache.commons.lang3.StringUtils;
+import com.solvd.bank.Interfaces.IPayCallBack;
 
 public class Main {
 
@@ -53,7 +57,19 @@ public class Main {
                 new ArrayList<Branch>(), new ArrayList<Transaction>(), new ArrayList<Credit>(),
                 new ArrayList<Account>(), depositAccount, license);
 
-        bank.addEmployee(bankCEO);
+        LOGGER.info("\nReflection[");
+        Class bankClass = bank.getClass();
+        try {
+            Method method = bankClass.getDeclaredMethod("addEmployee", Employee.class);
+            method.invoke(bank, bankCEO);
+        } catch (Exception e) {
+            LOGGER.debug(e.getMessage());
+        }
+        Field[] bankFields = bankClass.getDeclaredFields();
+        for (Field field : bankFields)
+            LOGGER.info(field);
+        LOGGER.info("\n]");
+        // bank.addEmployee(bankCEO);
 
         return bank;
     }
@@ -292,5 +308,9 @@ public class Main {
 
         LOGGER.info("\nBank general info: ");
         LOGGER.info(bank.toString());
+
+//        LOGGER.info("\nDeadlock testing: ");
+//        DeadlockRunnable.test();
+//        DeadlockThread.test();
     }
 }
